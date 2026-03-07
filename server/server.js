@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+
+// ROUTES
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -17,21 +19,40 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
-//create a database connection -> u can also
-//create a separate file for this and then import/use that file here
+const app = express();
+
+// PORT
+const PORT = process.env.PORT || 5000;
+
+/* ===========================
+   DATABASE CONNECTION
+=========================== */
 
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB connected"))
-  .catch((error) => console.log(error));
+  .catch((error) => console.log("MongoDB connection error:", error));
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+/* ===========================
+   CORS CONFIGURATION
+=========================== */
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hand2hand-marketplace.vercel.app/", // replace with your Vercel frontend URL
+];
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
     allowedHeaders: [
       "Content-Type",
       "Authorization",
@@ -39,13 +60,22 @@ app.use(
       "Expires",
       "Pragma",
     ],
-    credentials: true,
   })
 );
 
+/* ===========================
+   MIDDLEWARE
+=========================== */
+
 app.use(cookieParser());
 app.use(express.json());
+
+/* ===========================
+   ROUTES
+=========================== */
+
 app.use("/api/auth", authRouter);
+
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/orders", adminOrderRouter);
 
@@ -58,4 +88,10 @@ app.use("/api/shop/review", shopReviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
-app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
+/* ===========================
+   SERVER START
+=========================== */
+
+app.listen(PORT, () => {
+  console.log(`Server is now running on port ${PORT}`);
+});
