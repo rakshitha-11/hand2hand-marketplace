@@ -9,8 +9,8 @@ This project demonstrates **modern full-stack development using React, Node.js, 
 
 ## 🚀 Live Demo
 
-Frontend: *(Add Vercel link after deployment)*
-Backend API: *(Add Render link after deployment)*
+Frontend: *https://hand2hand-marketplace.vercel.app/*
+Backend API: *https://hand2hand-marketplace.onrender.com*
 
 ---
 
