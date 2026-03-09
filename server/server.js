@@ -39,27 +39,26 @@ mongoose
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://hand2hand-marketplace.vercel.app/", // replace with your Vercel frontend URL
+  "https://hand2hand-marketplace.vercel.app"
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+
+      // allow requests with no origin (like mobile apps or curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log("Blocked by CORS:", origin);
         callback(new Error("Not allowed by CORS"));
       }
+
     },
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
 
@@ -67,8 +66,8 @@ app.use(
    MIDDLEWARE
 =========================== */
 
-app.use(cookieParser());
 app.use(express.json());
+app.use(cookieParser());
 
 /* ===========================
    ROUTES
@@ -93,5 +92,5 @@ app.use("/api/common/feature", commonFeatureRouter);
 =========================== */
 
 app.listen(PORT, () => {
-  console.log(`Server is now running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
