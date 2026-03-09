@@ -6,7 +6,6 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import { Toaster } from "./components/ui/toaster.jsx";
 
-// Render React app
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Provider store={store}>
@@ -16,15 +15,29 @@ createRoot(document.getElementById("root")).render(
   </BrowserRouter>
 );
 
-// Load Chatbot AFTER page loads
-window.addEventListener("load", () => {
-  window.embeddedChatbotConfig = {
-    chatbotId: "UFEUevQYIA9jC9bRYMp7R",
-    domain: "www.chatbase.co"
-  };
+// CHATBOT FIX
+setTimeout(() => {
+  if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+    window.chatbase = (...args) => {
+      if (!window.chatbase.q) {
+        window.chatbase.q = [];
+      }
+      window.chatbase.q.push(args);
+    };
+
+    window.chatbase = new Proxy(window.chatbase, {
+      get(target, prop) {
+        if (prop === "q") return target.q;
+        return (...args) => target(prop, ...args);
+      },
+    });
+  }
 
   const script = document.createElement("script");
   script.src = "https://www.chatbase.co/embed.min.js";
+  script.setAttribute("chatbotId", "UFEUevQYIA9jC9bRYMp7R");
+  script.setAttribute("domain", "www.chatbase.co");
   script.defer = true;
+
   document.body.appendChild(script);
-});
+}, 1000);
