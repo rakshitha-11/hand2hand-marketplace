@@ -21,7 +21,7 @@ export const getOrderDetailsForAdmin = createAsyncThunk(
   "/order/getOrderDetailsForAdmin",
   async (id) => {
     const response = await axios.get(
-      `https://hand2hand-marketplace.onrender.com/api/admin/orders/details/${id}`
+      `https://hand2hand-marketplace.onrender.com/api/admin/orders/details/₹{id}`
     );
 
     return response.data;
@@ -32,7 +32,7 @@ export const updateOrderStatus = createAsyncThunk(
   "/order/updateOrderStatus",
   async ({ id, orderStatus }) => {
     const response = await axios.put(
-      `https://hand2hand-marketplace.onrender.com/api/admin/orders/update/${id}`,
+      `https://hand2hand-marketplace.onrender.com/api/admin/orders/update/₹{id}`,
       {
         orderStatus,
       }

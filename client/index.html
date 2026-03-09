@@ -2,24 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="C:\Users\mitta\Desktop\SUB\Sem - 4\PE\try\website-HAND2HAND\client\public\vite.svg" />
+
+    <!-- Fixed favicon path -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+
+    <title>HAND2HAND Marketplace</title>
   </head>
+
   <body>
     <div id="root"></div>
+
+    <!-- React entry -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Chatbase chatbot configuration -->
     <script>
       window.embeddedChatbotConfig = {
-      chatbotId: "UFEUevQYIA9jC9bRYMp7R",
-      domain: "www.chatbase.co"
-      }
-      </script>
-      <script
-      src="https://www.chatbase.co/embed.min.js"
-      chatbotId="UFEUevQYIA9jC9bRYMp7R"
-      domain="www.chatbase.co"
-      defer>
-      </script>
+        chatbotId: "UFEUevQYIA9jC9bRYMp7R",
+        domain: "www.chatbase.co"
+      };
+    </script>
+
+    <!-- Chatbot script -->
+    <script src="https://www.chatbase.co/embed.min.js" defer></script>
+
   </body>
 </html>
+

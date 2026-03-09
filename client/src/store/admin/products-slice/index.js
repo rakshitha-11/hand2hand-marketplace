@@ -38,7 +38,7 @@ export const editProduct = createAsyncThunk(
   "/products/editProduct",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `https://hand2hand-marketplace.onrender.com/api/admin/products/edit/${id}`,
+      `https://hand2hand-marketplace.onrender.com/api/admin/products/edit/₹{id}`,
       formData,
       {
         headers: {
@@ -55,7 +55,7 @@ export const deleteProduct = createAsyncThunk(
   "/products/deleteProduct",
   async (id) => {
     const result = await axios.delete(
-      `https://hand2hand-marketplace.onrender.com/api/admin/products/delete/${id}`
+      `https://hand2hand-marketplace.onrender.com/api/admin/products/delete/₹{id}`
     );
 
     return result?.data;

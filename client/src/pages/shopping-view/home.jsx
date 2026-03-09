@@ -285,7 +285,7 @@ function ShoppingHome() {
         const getQuantity = getCartItems[indexOfCurrentItem].quantity;
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ${getQuantity} quantity can be added for this item`,
+            title: `Only ₹{getQuantity} quantity can be added for this item`,
             variant: "destructive",
           });
 
@@ -350,7 +350,7 @@ return (
           <img
             key={index}
             src={banner} // Dynamically load images
-            className={`${
+            className={`₹{
               index === currentSlide ? "opacity-100" : "opacity-0"
             } absolute top-1/2 left-1/2 w-[600px] h-[400px] object-cover transition-opacity duration-1000`}
             style={{ transform: 'translate(-50%, -50%)' }}

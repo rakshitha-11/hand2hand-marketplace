@@ -225,7 +225,7 @@ const ShopTile = ({ product, handleGetProductDetails, handleAddtoCart }) => {
   </div>
   <div className="product-info">
     <h2>{product.title}</h2>
-    <p>Price: ${product.salePrice.toFixed(2)}</p>
+    <p>Price: ₹{product.salePrice.toFixed(2)}</p>
     <div className="button-group">
       <button className="bg-cyan-500 hover:bg-cyan-700 text-black font-bold py-2 px-4 rounded" onClick={() => handleGetProductDetails(product.id)}>View Details</button>
       <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleAddtoCart(product)}>Add to Cart</button>
@@ -242,7 +242,7 @@ function createSearchParamsHelper(filterParams) {
     if (Array.isArray(value) && value.length > 0) {
       const paramValue = value.join(",");
 
-      queryParams.push(`${key}=${encodeURIComponent(paramValue)}`);
+      queryParams.push(`₹{key}=₹{encodeURIComponent(paramValue)}`);
     }
   }
 
@@ -309,7 +309,7 @@ function ShoppingListing() {
         const getQuantity = getCartItems[indexOfCurrentItem].quantity;
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ${getQuantity} quantity can be added for this item`,
+            title: `Only ₹{getQuantity} quantity can be added for this item`,
             variant: "destructive",
           });
 
