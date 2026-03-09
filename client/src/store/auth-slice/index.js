@@ -12,7 +12,7 @@ export const registerUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://hand2hand-marketplace.onrender.com/auth/register",
+      "https://hand2hand-marketplace.onrender.com/api/auth/register",
       formData,
       {
         withCredentials: true,
@@ -28,7 +28,7 @@ export const loginUser = createAsyncThunk(
 
   async (formData) => {
     const response = await axios.post(
-      "https://hand2hand-marketplace.onrender.com/auth/login",
+      "https://hand2hand-marketplace.onrender.com/api/auth/login",
       formData,
       {
         withCredentials: true,
@@ -44,7 +44,7 @@ export const logoutUser = createAsyncThunk(
 
   async () => {
     const response = await axios.post(
-      "https://hand2hand-marketplace.onrender.com/auth/logout",
+      "https://hand2hand-marketplace.onrender.com/api/auth/logout",
       {},
       {
         withCredentials: true,
@@ -60,7 +60,7 @@ export const checkAuth = createAsyncThunk(
 
   async () => {
     const response = await axios.get(
-      "https://hand2hand-marketplace.onrender.com/auth/check-auth",
+      "https://hand2hand-marketplace.onrender.com/api/auth/check-auth",
       {
         withCredentials: true,
         headers: {

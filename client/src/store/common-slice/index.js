@@ -10,7 +10,7 @@ export const getFeatureImages = createAsyncThunk(
   "/order/getFeatureImages",
   async () => {
     const response = await axios.get(
-      `https://hand2hand-marketplace.onrender.com/common/feature/get`
+      `https://hand2hand-marketplace.onrender.com/api/common/feature/get`
     );
 
     return response.data;
@@ -21,7 +21,7 @@ export const addFeatureImage = createAsyncThunk(
   "/order/addFeatureImage",
   async (image) => {
     const response = await axios.post(
-      `https://hand2hand-marketplace.onrender.com/common/feature/add`,
+      `https://hand2hand-marketplace.onrender.com/api/common/feature/add`,
       { image }
     );
 

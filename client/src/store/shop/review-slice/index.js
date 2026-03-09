@@ -10,7 +10,7 @@ export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
     const response = await axios.post(
-      `https://hand2hand-marketplace.onrender.com/shop/review/add`,
+      `https://hand2hand-marketplace.onrender.com/api/shop/review/add`,
       formdata
     );
 
@@ -20,7 +20,7 @@ export const addReview = createAsyncThunk(
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
   const response = await axios.get(
-    `https://hand2hand-marketplace.onrender.com/shop/review/${id}`
+    `https://hand2hand-marketplace.onrender.com/api/shop/review/${id}`
   );
 
   return response.data;
