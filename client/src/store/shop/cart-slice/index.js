@@ -26,7 +26,7 @@ export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
     const response = await axios.get(
-      `https://hand2hand-marketplace.onrender.com/api/shop/cart/get/₹{userId}`
+      `https://hand2hand-marketplace.onrender.com/api/shop/cart/get/${userId}`
     );
 
     return response.data;
@@ -37,7 +37,7 @@ export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",
   async ({ userId, productId }) => {
     const response = await axios.delete(
-      `https://hand2hand-marketplace.onrender.com/api/shop/cart/₹{userId}/₹{productId}`
+      `https://hand2hand-marketplace.onrender.com/api/shop/cart/${userId}/${productId}`
     );
 
     return response.data;

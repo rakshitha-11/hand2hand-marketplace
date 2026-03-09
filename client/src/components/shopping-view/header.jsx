@@ -44,7 +44,7 @@ function MenuItems() {
 
     location.pathname.includes("listing") && currentFilter !== null
       ? setSearchParams(
-          new URLSearchParams(`?category=₹{getCurrentMenuItem.id}`)
+          new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
         )
       : navigate(getCurrentMenuItem.path);
   }

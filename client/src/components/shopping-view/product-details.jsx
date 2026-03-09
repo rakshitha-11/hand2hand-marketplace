@@ -40,7 +40,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         const getQuantity = getCartItems[indexOfCurrentItem].quantity;
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ₹{getQuantity} quantity can be added for this item`,
+            title: `Only ${getQuantity} quantity can be added for this item`,
             variant: "destructive",
           });
 
@@ -125,15 +125,15 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           </div>
           <div className="flex items-center justify-between">
             <p
-              className={`text-3xl font-bold text-primary ₹{
+              className={`text-3xl font-bold text-primary ${
                 productDetails?.salePrice > 0 ? "line-through" : ""
               }`}
             >
-              ₹{productDetails?.price}
+              ${productDetails?.price}
             </p>
             {productDetails?.salePrice > 0 ? (
               <p className="text-2xl font-bold text-muted-foreground">
-                ₹{productDetails?.salePrice}
+                ${productDetails?.salePrice}
               </p>
             ) : null}
           </div>

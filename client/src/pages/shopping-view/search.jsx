@@ -27,11 +27,11 @@ function SearchProducts() {
   useEffect(() => {
     if (keyword && keyword.trim() !== "" && keyword.trim().length > 3) {
       setTimeout(() => {
-        setSearchParams(new URLSearchParams(`?keyword=₹{keyword}`));
+        setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
         dispatch(getSearchResults(keyword));
       }, 1000);
     } else {
-      setSearchParams(new URLSearchParams(`?keyword=₹{keyword}`));
+      setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
       dispatch(resetSearchResults());
     }
   }, [keyword]);
@@ -48,7 +48,7 @@ function SearchProducts() {
         const getQuantity = getCartItems[indexOfCurrentItem].quantity;
         if (getQuantity + 1 > getTotalStock) {
           toast({
-            title: `Only ₹{getQuantity} quantity can be added for this item`,
+            title: `Only ${getQuantity} quantity can be added for this item`,
             variant: "destructive",
           });
 
